@@ -19,7 +19,7 @@ public class InputFormView : MonoBehaviour
 
     private void Start()
     {
-        _inputField.onEndEdit.AddListener(OnEndEdit);
+        _inputField.onValueChanged.AddListener(OnInputChanged);
         _errorOkBtn.onClick.AddListener(OnErrorOkButtonClicked);
         _applyBtn.onClick.AddListener(OnApplyButtonClicked);
     }
@@ -33,13 +33,13 @@ public class InputFormView : MonoBehaviour
     public void ShowErrorMessage(bool show) =>
         _errorViewRoot.SetActive(show);
 
-    private void OnEndEdit(string input)
+    private void OnInputChanged(string input)
     {
-        //_presenter.OnInputEntered(input);
+        _presenter.OnInputChanged(input);
     }
 
     private void OnApplyButtonClicked() => 
-        _presenter.OnInputEntered(_inputField.text);
+        _presenter.OnApplyButtonClicked(_inputField.text);
 
     private void OnErrorOkButtonClicked()
     {

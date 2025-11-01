@@ -18,13 +18,23 @@ namespace InputForm
             _view.ShowErrorMessage(false);
         }
 
-        public void OnInputEntered(string input) => 
-            HandleInput(input);
+        public void OnApplyButtonClicked(string input) => 
+            HandleInputApply(input);
 
         public void OnErrorOkButtonClicked() => 
             _view.ShowErrorMessage(false);
 
-        private void HandleInput(string input)
+        public void OnInputChanged(string input)
+        {
+            HandleInputChanged(input);
+        }
+
+        private void HandleInputChanged(string input)
+        {
+            
+        }
+
+        private void HandleInputApply(string input)
         {
             var success = _calculatorService.ApplyInput(input);
             if (success)
