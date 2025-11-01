@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Core;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
@@ -12,7 +11,7 @@ namespace App.Scripts.Saver
         private const string SAVE_DATA_KEY = "SaveDataKey";
         
         private readonly ISaver _saver;
-        private Dictionary<Type, object> _datas = new();
+        private Dictionary<string, string> _datas = new();
 
         public SaveSystemService(ISaver saver)
         {
@@ -26,16 +25,17 @@ namespace App.Scripts.Saver
 
         public void SaveData<T>(T data) where T : struct
         {
-            _datas[typeof(T)] = data;
-            var json = JsonConvert.SerializeObject(_datas);
-            _saver.Save(SAVE_DATA_KEY, json);
+            var dataJson = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+            _datas[typeof(T).Name] = dataJson;
+            var saveJson = JsonConvert.SerializeObject(_datas);
+            _saver.Save(SAVE_DATA_KEY, saveJson);
         }
 
         public bool GetData<T>(out T data) where T : struct
         {
-            if (_datas.TryGetValue(typeof(T), out var outData))
+            if (_datas.TryGetValue(typeof(T).Name, out var outData))
             {
-                data = (T)outData;
+                data = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(outData);
                 return true;
             }
 
@@ -49,7 +49,7 @@ namespace App.Scripts.Saver
             if (string.IsNullOrEmpty(json))
                 return;
 
-            var saveData = JsonConvert.DeserializeObject<Dictionary<Type, object>>(json);
+            var saveData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
             if (saveData == null)
             {
                 Debug.LogError("Loading save has failed. Deserialization error");

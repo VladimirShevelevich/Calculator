@@ -1,6 +1,7 @@
 ﻿using Core;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Calculator
 {
@@ -11,6 +12,10 @@ namespace Calculator
         {
             builder.Register<ICalculatorService, CalculatorService>(Lifetime.Singleton);
             builder.Register<IInputHandler, DefaultInputHandler>(Lifetime.Singleton);
+            builder.UseEntryPoints(ep =>
+            {
+                ep.Add<CalculatorModel>().AsSelf();
+            });
         }
     }
 }

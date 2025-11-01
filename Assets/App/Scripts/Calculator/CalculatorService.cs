@@ -5,11 +5,12 @@ namespace Calculator
     public class CalculatorService : ICalculatorService
     {
         private readonly IInputHandler _inputHandler;
-        private readonly CalculatorModel _calculatorModel = new();
+        private readonly CalculatorModel _calculatorModel;
 
-        public CalculatorService(IInputHandler inputHandler)
+        public CalculatorService(IInputHandler inputHandler, CalculatorModel calculatorModel)
         {
             _inputHandler = inputHandler;
+            _calculatorModel = calculatorModel;
         }
         
         public bool ApplyInput(string input)
