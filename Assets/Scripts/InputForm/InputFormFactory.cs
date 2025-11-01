@@ -21,7 +21,10 @@ namespace InputForm
 
         private void Create()
         {
-            Object.Instantiate(_inputFormContent.Prefab, _mainCanvas.transform);
+            var presenter = new InputFormPresenter();
+            var view = Object.Instantiate(_inputFormContent.Prefab, _mainCanvas.transform);
+            view.Construct(presenter);
+            presenter.BindView(view);
         }
     }
 }

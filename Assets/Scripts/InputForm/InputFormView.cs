@@ -13,8 +13,11 @@ public class InputFormView : MonoBehaviour
         _presenter = presenter;
     }
 
-    public void SetText(string text) =>
+    public void SetInputText(string text) =>
         _inputField.text = text;
+
+    public void Clear() =>
+        _inputField.text = "";
 
     private void Start()
     {
