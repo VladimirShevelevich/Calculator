@@ -5,6 +5,7 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 public class InputFormView : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class InputFormView : MonoBehaviour
     private ICalculatorModel _calculatorModel;
     private readonly StringBuilder _expressionsLogBuilder = new();
 
+    [Inject]
     public void Construct(InputFormPresenter presenter, ICalculatorModel calculatorModel)
     {
         _presenter = presenter;

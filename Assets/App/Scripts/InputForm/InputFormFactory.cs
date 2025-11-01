@@ -9,15 +9,16 @@ namespace InputForm
     {
         private readonly InputFormContent _inputFormContent;
         private readonly Canvas _mainCanvas;
+        private readonly IObjectResolver _objectResolver;
         private readonly ICalculatorService _calculatorService;
         private readonly InputFormPresenter _inputFormPresenter;
 
-        public InputFormFactory(InputFormContent inputFormContent, Canvas mainCanvas, ICalculatorService calculatorService, InputFormPresenter inputFormPresenter)
+        public InputFormFactory(InputFormContent inputFormContent, Canvas mainCanvas, InputFormPresenter inputFormPresenter, IObjectResolver objectResolver)
         {
             _inputFormContent = inputFormContent;
             _mainCanvas = mainCanvas;
-            _calculatorService = calculatorService;
             _inputFormPresenter = inputFormPresenter;
+            _objectResolver = objectResolver;
         }
 
         public void Initialize()
@@ -28,7 +29,7 @@ namespace InputForm
         private void Create()
         {
             var view = Object.Instantiate(_inputFormContent.Prefab, _mainCanvas.transform);
-            view.Construct(_inputFormPresenter, _calculatorService.CalculatorModel);
+            _objectResolver.Inject(view);
             _inputFormPresenter.BindView(view);
         }
     }
