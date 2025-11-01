@@ -25,7 +25,7 @@ namespace App.Scripts.Saver
 
         public void SaveData<T>(T data) where T : struct
         {
-            var dataJson = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+            var dataJson = JsonConvert.SerializeObject(data);
             _datas[typeof(T).Name] = dataJson;
             var saveJson = JsonConvert.SerializeObject(_datas);
             _saver.Save(SAVE_DATA_KEY, saveJson);
@@ -35,7 +35,7 @@ namespace App.Scripts.Saver
         {
             if (_datas.TryGetValue(typeof(T).Name, out var outData))
             {
-                data = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(outData);
+                data = JsonConvert.DeserializeObject<T>(outData);
                 return true;
             }
 

@@ -1,5 +1,4 @@
-﻿using Core;
-using UnityEngine;
+﻿using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -10,10 +9,12 @@ namespace InputForm
         private readonly InputFormContent _inputFormContent;
         private readonly Canvas _mainCanvas;
         private readonly IObjectResolver _objectResolver;
-        private readonly ICalculatorService _calculatorService;
         private readonly InputFormPresenter _inputFormPresenter;
 
-        public InputFormFactory(InputFormContent inputFormContent, Canvas mainCanvas, InputFormPresenter inputFormPresenter, IObjectResolver objectResolver)
+        public InputFormFactory(InputFormContent inputFormContent, 
+            Canvas mainCanvas, 
+            InputFormPresenter inputFormPresenter, 
+            IObjectResolver objectResolver)
         {
             _inputFormContent = inputFormContent;
             _mainCanvas = mainCanvas;

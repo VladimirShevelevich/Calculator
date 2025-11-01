@@ -41,7 +41,7 @@ public class InputFormView : MonoBehaviour
     public void SetInputText(string text) =>
         _inputField.text = text;
 
-    public void Clear() =>
+    public void ClearInputText() =>
         _inputField.text = "";
 
     public void ShowErrorMessage(bool show)

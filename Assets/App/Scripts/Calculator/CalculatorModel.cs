@@ -21,6 +21,12 @@ namespace Calculator
             Load();
         }
 
+        public void AddExpressionLog(string log)
+        {
+            _expressionsLog.Add(log);
+            Save();
+        }
+
         private void Load()
         {
             if (!_saveSystemService.GetData(out CalculatorSaveData saveData)) 
@@ -29,13 +35,6 @@ namespace Calculator
             foreach (var expressionLog in saveData.ExpressionsLog) 
                 _expressionsLog.Add(expressionLog);
         }
-
-        public void AddExpressionLog(string log)
-        {
-            _expressionsLog.Add(log);
-            Save();
-        }
-
 
         private void Save()
         {

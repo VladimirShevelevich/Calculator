@@ -18,8 +18,7 @@ namespace InputForm
         {
             _view = view;
             _view.ShowErrorMessage(false);
-            if (_inputFormSaver.LoadData(out InputFormSaveData saveData)) 
-                _view.SetInputText(saveData.CurrentInput);
+            RestoreData();
         }
 
         public void OnApplyButtonClicked(string input) => 
@@ -42,9 +41,15 @@ namespace InputForm
         {
             var success = _calculatorService.ApplyInput(input);
             if (success)
-                _view.Clear();
+                _view.ClearInputText();
             else
                 _view.ShowErrorMessage(true);
+        }
+
+        private void RestoreData()
+        {
+            if (_inputFormSaver.LoadData(out InputFormSaveData saveData)) 
+                _view.SetInputText(saveData.CurrentInput);
         }
     }
 }
