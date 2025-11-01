@@ -9,10 +9,12 @@ using UnityEngine.UI;
 public class InputFormView : MonoBehaviour
 {
     [SerializeField] private TMP_InputField _inputField;
+    [SerializeField] private GameObject _inputViewRoot;
     [SerializeField] private GameObject _errorViewRoot;
     [SerializeField] private Button _errorOkBtn;
     [SerializeField] private Button _applyBtn;
     [SerializeField] private TMP_Text _expressionsLogText;
+    [SerializeField] private RectTransform _layoutGroup;
     
     private InputFormPresenter _presenter;
     private ICalculatorModel _calculatorModel;
@@ -40,8 +42,11 @@ public class InputFormView : MonoBehaviour
     public void Clear() =>
         _inputField.text = "";
 
-    public void ShowErrorMessage(bool show) =>
+    public void ShowErrorMessage(bool show)
+    {
         _errorViewRoot.SetActive(show);
+        _inputViewRoot.SetActive(!show);
+    }
 
     private void OnInputChanged(string input) => 
         _presenter.OnInputChanged(input);
@@ -64,5 +69,6 @@ public class InputFormView : MonoBehaviour
     {
         _expressionsLogBuilder.Insert(0, addEvent.Value + "\n");
         _expressionsLogText.text = _expressionsLogBuilder.ToString();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_layoutGroup);
     }
 }
