@@ -15,12 +15,22 @@ namespace InputForm
         public void BindView(InputFormView view)
         {
             _view = view;
+            _view.ShowErrorMessage(false);
         }
 
-        public void OnEndEdit(string input)
+        public void OnInputEntered(string input) => 
+            HandleInput(input);
+
+        public void OnErrorOkButtonClicked() => 
+            _view.ShowErrorMessage(false);
+
+        private void HandleInput(string input)
         {
-            _calculatorService.ApplyInput(input);
-            _view.Clear();
+            var success = _calculatorService.ApplyInput(input);
+            if (success)
+                _view.Clear();
+            else
+                _view.ShowErrorMessage(true);
         }
     }
 }

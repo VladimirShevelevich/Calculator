@@ -5,9 +5,17 @@ namespace Calculator
 {
     public class CalculatorService : ICalculatorService
     {
-        public void ApplyInput(string input)
+        private readonly IInputHandler _inputHandler;
+
+        public CalculatorService(IInputHandler inputHandler)
+        {
+            _inputHandler = inputHandler;
+        }
+        
+        public bool ApplyInput(string input)
         {
             Debug.Log($"Applying input: {input}");
+            return _inputHandler.HandleInput(input, out var result);
         }
     }
 }

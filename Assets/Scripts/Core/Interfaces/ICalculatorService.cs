@@ -2,6 +2,11 @@
 {
     public interface ICalculatorService
     {
-        public void ApplyInput(string input);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns>Whether the operation is success</returns>
+        public bool ApplyInput(string input);
     }
 }
