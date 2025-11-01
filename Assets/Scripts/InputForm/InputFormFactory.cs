@@ -1,6 +1,8 @@
-﻿namespace InputForm
+﻿using VContainer.Unity;
+
+namespace InputForm
 {
-    public class InputFormFactory
+    public class InputFormFactory : IInitializable
     {
         private readonly InputFormContent _inputFormContent;
 
@@ -8,8 +10,13 @@
         {
             _inputFormContent = inputFormContent;
         }
-        
-        public void Create()
+
+        public void Initialize()
+        {
+            Create();
+        }
+
+        private void Create()
         {
             
         }
