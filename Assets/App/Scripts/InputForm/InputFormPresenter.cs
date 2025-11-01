@@ -5,17 +5,21 @@ namespace InputForm
     public class InputFormPresenter
     {
         private readonly ICalculatorService _calculatorService;
+        private readonly InputFormSaver _inputFormSaver;
         private InputFormView _view;
 
-        public InputFormPresenter(ICalculatorService calculatorService)
+        public InputFormPresenter(ICalculatorService calculatorService, InputFormSaver inputFormSaver)
         {
             _calculatorService = calculatorService;
+            _inputFormSaver = inputFormSaver;
         }
 
         public void BindView(InputFormView view)
         {
             _view = view;
             _view.ShowErrorMessage(false);
+            if (_inputFormSaver.LoadData(out InputFormSaveData saveData)) 
+                _view.SetInputText(saveData.CurrentInput);
         }
 
         public void OnApplyButtonClicked(string input) => 
@@ -31,7 +35,7 @@ namespace InputForm
 
         private void HandleInputChanged(string input)
         {
-            
+            _inputFormSaver.HandleCurrentInputChanged(input);
         }
 
         private void HandleInputApply(string input)

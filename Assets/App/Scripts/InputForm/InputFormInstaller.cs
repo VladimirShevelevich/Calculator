@@ -14,6 +14,7 @@ namespace InputForm
         {
             builder.RegisterInstance(_inputFormContent);
             builder.Register<InputFormPresenter>(Lifetime.Singleton);
+            builder.Register<InputFormSaver>(Lifetime.Singleton);
             builder.UseEntryPoints(ep =>
             {
                 ep.Add<InputFormFactory>();
