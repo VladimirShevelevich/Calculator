@@ -411,7 +411,8 @@ MonoBehaviour:
   autoInjectGameObjects: []
   _canvas: {fileID: 1770122519}
   _domainsInstallers:
-  - {fileID: -2743492813720548718, guid: 1327c2171bf31c94ebee2e50670d2a81, type: 3}
+  - {fileID: 11400000, guid: 7712d8bb1bb4ff8489bad54908994330, type: 2}
+  - {fileID: 11400000, guid: ec509b0f1457b9c4f8a9d245b8c6fe31, type: 2}
 --- !u!4 &1335896485
 Transform:
   m_ObjectHideFlags: 0
