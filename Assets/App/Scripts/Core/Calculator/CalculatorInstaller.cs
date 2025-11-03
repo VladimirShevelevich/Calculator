@@ -6,11 +6,10 @@ using VContainer.Unity;
 namespace Calculator
 {
     [CreateAssetMenu(fileName = "CalculatorInstaller", menuName = "Installers/Calculator")]
-    public class CalculatorInstaller : DomainInstaller
+    public class CalculatorInstaller : Installer
     {
         public override void Install(IContainerBuilder builder)
         {
-            builder.Register<ICalculatorService, CalculatorService>(Lifetime.Singleton);
             builder.Register<IInputHandler, DefaultInputHandler>(Lifetime.Singleton);
             builder.UseEntryPoints(ep =>
             {

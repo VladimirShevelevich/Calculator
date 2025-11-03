@@ -6,7 +6,7 @@ using VContainer.Unity;
 namespace InputForm
 {
     [CreateAssetMenu(fileName = "InputFormInstaller", menuName = "Installers/InputForm")]
-    public class InputFormInstaller : DomainInstaller
+    public class InputFormInstaller : Installer
     {
         [SerializeField] private InputFormContent _inputFormContent;
         

@@ -1,16 +1,16 @@
-﻿using Core;
+﻿using Calculator;
 
 namespace InputForm
 {
     public class InputFormPresenter
     {
-        private readonly ICalculatorService _calculatorService;
+        private readonly CalculatorModel _calculatorModel;
         private readonly InputFormSaver _inputFormSaver;
         private InputFormView _view;
 
-        public InputFormPresenter(ICalculatorService calculatorService, InputFormSaver inputFormSaver)
+        public InputFormPresenter(CalculatorModel calculatorModel, InputFormSaver inputFormSaver)
         {
-            _calculatorService = calculatorService;
+            _calculatorModel = calculatorModel;
             _inputFormSaver = inputFormSaver;
         }
 
@@ -39,7 +39,7 @@ namespace InputForm
 
         private void HandleInputApply(string input)
         {
-            var success = _calculatorService.ApplyInput(input);
+            var success = _calculatorModel.ApplyInput(input);
             if (success)
                 _view.ClearInputText();
             else

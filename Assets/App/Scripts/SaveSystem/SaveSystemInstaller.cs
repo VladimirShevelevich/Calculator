@@ -1,14 +1,11 @@
-﻿using Core;
-using UnityEngine;
-using VContainer;
+﻿using VContainer;
 using VContainer.Unity;
 
 namespace App.Scripts.Saver
 {
-    [CreateAssetMenu(fileName = "SaveSystemInstaller", menuName = "Installers/SaveSystem")]
-    public class SaveSystemInstaller : DomainInstaller
+    public class SaveSystemInstaller
     {
-        public override void Install(IContainerBuilder builder)
+        public static void Install(IContainerBuilder builder)
         {
             builder.Register<ISaver, PrefsSaver>(Lifetime.Singleton);
             builder.UseEntryPoints(ep =>
