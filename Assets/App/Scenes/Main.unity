@@ -411,7 +411,6 @@ MonoBehaviour:
   autoInjectGameObjects: []
   _canvas: {fileID: 1770122519}
   _installers:
-  - {fileID: 11400000, guid: 44475269a60c4e94a91cfb01b6c70318, type: 2}
   - {fileID: 11400000, guid: 7712d8bb1bb4ff8489bad54908994330, type: 2}
   - {fileID: 11400000, guid: ec509b0f1457b9c4f8a9d245b8c6fe31, type: 2}
 --- !u!4 &1335896485
